@@ -1,0 +1,40 @@
+[icons]
+icons = "awesome6"
+
+[theme.overrides]
+idle_bg = "#2d3043"
+idle_fg = "#c6c8d1"
+alternating_tint_bg = "#161821"
+alternating_tint_fg = "#c6c8d1"
+critical_bg = "#1d2031"
+critical_fg = "#e27878"
+good_bg = "#2e3244"
+good_fg = "#b4be82"
+info_bg = "#161821"
+info_fg = "#84a0c6"
+separator_bg = "auto"
+separator_fg = "auto"
+separator = "\ue0b2"
+warning_bg = "#1d2031"
+warning_fg = "#e2a478"
+
+[[block]]
+block = "custom"
+command = "playerctl metadata --format \" Now Play: {{ lc(title) }}\""
+
+[[block]]
+block = "custom"
+command = "echo '{\"icon\":\"cpu\",\"state\":\"Warning\", \"text\": \"85%\"}'"
+json = true
+
+[[block]]
+block = "uptime"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "time"
+interval = 1
+[block.format]
+full = " $icon $timestamp.datetime(f:'%m/%d %H:%M(%a)') "

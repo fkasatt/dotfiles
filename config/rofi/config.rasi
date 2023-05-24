@@ -1,0 +1,10 @@
+configuration {
+    modi: "drun,window,run";
+    font: "Orbitron Bold 12";
+    show-icons: true;
+    hide-scrollbar: true;
+    sidebar-mode: true;
+    kb-mode-previous: "Alt+h";
+    kb-mode-next: "Alt+l";
+}
+@theme "/usr/share/rofi/themes/Paper.rasi"
