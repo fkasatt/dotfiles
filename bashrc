@@ -86,6 +86,13 @@ ckn (){
 	rm tmp
 }
 
+push (){
+	git diff origin/HEAD | rg '^\+' | rg 'auth|api_key|pass|token|secret' 2> /dev/null
+	if [ $? -eq 1 ] ; then
+		git push
+	fi
+}
+
 alias cls='clear'
 alias vi='nvim'
 alias ls='lsd'
