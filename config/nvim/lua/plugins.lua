@@ -20,10 +20,6 @@ return {
     		}
     	}
     },
-	{
-		"github/copilot.vim",
-		event = 'VeryLazy'
-	},
     {
         "stevearc/dressing.nvim",
         event = 'VeryLazy',
@@ -93,6 +89,10 @@ return {
     -- theme
     { "cocopon/iceberg.vim", event = 'VeryLazy' },
     { "folke/tokyonight.nvim", event = 'VeryLazy' },
+    { 
+		"EdenEast/nightfox.nvim", 
+		event = 'VeryLazy',
+	},
     {
         "rebelot/kanagawa.nvim",
         config = function()

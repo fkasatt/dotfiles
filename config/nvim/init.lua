@@ -64,7 +64,7 @@ vim.g.mapleader = ' '
 set('n', '<Esc><Esc>', ':nohl<CR>', { noremap = true, silent = true})
 set('n', 'ew', ':<C-u>w<CR>')
 set('n', 'eq', ':<C-u>wq<CR>')
-set('n', 'Q', ':<C-u>quit!<CR>')
+set('n', 'Q', ':<C-u>qa!<CR>')
 set('n', 'B', '/^$<CR>:nohl<CR>')
 set('n', '<C-s>', ':<C-u>%s///g<Left><Left><Left>')
 set('n', '<C-c>', ":<C-u>echo wordcount()['chars']<CR>")

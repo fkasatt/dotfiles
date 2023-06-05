@@ -16,7 +16,7 @@ font:
   normal:
     family: PlemolJP Console NF
     style: Text
-  size: 10
+  size: 9
   offset:
     x: 0
     y: -2
