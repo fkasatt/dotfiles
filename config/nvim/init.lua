@@ -100,6 +100,8 @@ set('n', 'gx', '<cmd>Telescope diagnostics<CR>')
 set('n', '<leader>f', '<cmd>Telescope file_browser hidden=true<CR>')
 set('n', '<leader>m', '<cmd>Telescope memo list<CR>')
 set('n', '<leader>n', '<cmd>Telescope memo live_grep<CR>')
+set('n', 'zl', ':vertical resize +10<CR>')
+set('n', 'zh', ':vertical resize -10<CR>')
 -- keymap-hlslens
 set('n', 'n', [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
 set('n', 'N', [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]], kopts)
@@ -131,94 +133,94 @@ local kopts = {noremap = true, silent = true}
 
 
 -- lsp
-local on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = fals 
-    set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
-    set('n', 'lc', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
-    set('n', 'ln', '<cmd>lua vim.lsp.buf.rename()<CR>')
-    set('n', 'lu', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-    set('n', 'l[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
-    set('n', 'l]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-    set('n', 'lf', '<cmd>lua vim.lsp.buf.format {async = true}<CR>')
-end
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
-require('mason').setup()
-require('mason-lspconfig').setup()
-require('mason-lspconfig').setup_handlers {
-    function(server_name)
-        require('lspconfig')[server_name].setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-    end
-}
-
--- nvim-cmp
-local cmp = require('cmp')
-local lspkind = require('lspkind')
-
- cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
-        end
-    },
-
-    window = {
-        completion = cmp.config.window.bordered({
-            border = 'single'
-        }),
-        documentation = cmp.config.window.bordered({
-            border = 'single'
-        }),
-    },
-
-    mapping = cmp.mapping.preset.insert({
-        ['<S-Tab>'] = cmp.mapping.select_next_item(),
-        ['<A-Tab>'] = cmp.mapping.select_prev_item(),
-        ['q'] = cmp.mapping.abort(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-    
-    formatting = {
-        format = lspkind.cmp_format({
-            mode = 'symbol',
-            maxwidth = 50,
-            ellipsis_char = '...',
-        })
-    },
-
-    sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'vsnip' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'calc' },
-    },{
-        { name = 'buffer', keyword_length = 2 },
-    })
-})
-
- cmp.setup.cmdline({ '/', '?' },{
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-            { name = 'nvim_lsp_document_symbol' }
-    },{
-        { name = 'buffer' }
-    })
- })
-
- cmp.setup.cmdline(':', {
- mapping = cmp.mapping.preset.cmdline(),
- sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-        { name = 'cmdline', keyword_length = 2 }
-    })
- })
-
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-vim.cmd('let g:vsnip_filetypes = {}')
+--local on_attach = function(client, bufnr)
+--    client.server_capabilities.documentFormattingProvider = fals 
+--    set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
+--    set('n', 'lc', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+--    set('n', 'ln', '<cmd>lua vim.lsp.buf.rename()<CR>')
+--    set('n', 'lu', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+--    set('n', 'l[', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+--    set('n', 'l]', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+--    set('n', 'lf', '<cmd>lua vim.lsp.buf.format {async = true}<CR>')
+--end
+--vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+--vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false })
+--require('mason').setup()
+--require('mason-lspconfig').setup()
+--require('mason-lspconfig').setup_handlers {
+--    function(server_name)
+--        require('lspconfig')[server_name].setup {
+--            on_attach = on_attach,
+--            capabilities = capabilities,
+--        }
+--    end
+--}
+--
+---- nvim-cmp
+--local cmp = require('cmp')
+--local lspkind = require('lspkind')
+--
+-- cmp.setup({
+--    snippet = {
+--        expand = function(args)
+--            vim.fn['vsnip#anonymous'](args.body)
+--        end
+--    },
+--
+--    window = {
+--        completion = cmp.config.window.bordered({
+--            border = 'single'
+--        }),
+--        documentation = cmp.config.window.bordered({
+--            border = 'single'
+--        }),
+--    },
+--
+--    mapping = cmp.mapping.preset.insert({
+--        ['<S-Tab>'] = cmp.mapping.select_next_item(),
+--        ['<A-Tab>'] = cmp.mapping.select_prev_item(),
+--        ['q'] = cmp.mapping.abort(),
+--        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+--    }),
+--    
+--    formatting = {
+--        format = lspkind.cmp_format({
+--            mode = 'symbol',
+--            maxwidth = 50,
+--            ellipsis_char = '...',
+--        })
+--    },
+--
+--    sources = cmp.config.sources({
+--        { name = 'nvim_lsp' },
+--        { name = 'vsnip' },
+--        { name = 'nvim_lsp_signature_help' },
+--        { name = 'calc' },
+--    },{
+--        { name = 'buffer', keyword_length = 2 },
+--    })
+--})
+--
+-- cmp.setup.cmdline({ '/', '?' },{
+--        mapping = cmp.mapping.preset.cmdline(),
+--        sources = cmp.config.sources({
+--            { name = 'nvim_lsp_document_symbol' }
+--    },{
+--        { name = 'buffer' }
+--    })
+-- })
+--
+-- cmp.setup.cmdline(':', {
+-- mapping = cmp.mapping.preset.cmdline(),
+-- sources = cmp.config.sources({
+--        { name = 'path' }
+--    }, {
+--        { name = 'cmdline', keyword_length = 2 }
+--    })
+-- })
+--
+--local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--vim.cmd('let g:vsnip_filetypes = {}')
 
 -- telescope
 require('telescope').setup({

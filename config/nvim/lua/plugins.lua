@@ -15,9 +15,9 @@ return {
     			vim.keymap.set("i", "<C-j>", "<Plug>(skkeleton-enable)", {})
     			vim.keymap.set("c", "<C-j>", "<Plug>(skkeleton-enable)", {})
     		end,
-    		dependencies = {
-    			'rinx/cmp-skkeleton',
-    		}
+--    		dependencies = {
+--    			'rinx/cmp-skkeleton',
+--    		}
     	}
     },
     {
@@ -161,24 +161,24 @@ return {
     },
 
     -- lsp
-    {'hrsh7th/nvim-cmp', event = 'InsertEnter, CmdlineEnter'},
-    {'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter'}, 
-    {'hrsh7th/cmp-buffer', event = 'InsertEnter'},
-    {'hrsh7th/cmp-path', event = 'InsertEnter'},
-    {'hrsh7th/cmp-vsnip', event = 'InsertEnter'},
-    {'hrsh7th/cmp-cmdline', event = 'ModeChanged'},
-    {'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter'},
-    {'hrsh7th/cmp-nvim-lsp-document-symbol', event = 'InsertEnter'},
-    {'hrsh7th/cmp-calc', event = 'InsertEnter'},
-    {'onsails/lspkind.nvim', event = 'InsertEnter'},
-    {'hrsh7th/vim-vsnip', event = 'InsertEnter'},
-    {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter'},
-    {'rafamadriz/friendly-snippets', event = 'InsertEnter'},
-    {'Maan2003/lsp_lines.nvim', config = true, event = 'BufNewFile, BufRead'},
-
-    {'williamboman/mason.nvim', event = 'BufRead', cmd = {'Mason', 'MasonInstall'},},
-    {'neovim/nvim-lspconfig', event = 'LspAttach'},
-    {'williamboman/mason-lspconfig.nvim', event = 'LspAttach'},
+--    {'hrsh7th/nvim-cmp', event = 'InsertEnter, CmdlineEnter'},
+--    {'hrsh7th/cmp-nvim-lsp', event = 'InsertEnter'}, 
+--    {'hrsh7th/cmp-buffer', event = 'InsertEnter'},
+--    {'hrsh7th/cmp-path', event = 'InsertEnter'},
+--    {'hrsh7th/cmp-vsnip', event = 'InsertEnter'},
+--    {'hrsh7th/cmp-cmdline', event = 'ModeChanged'},
+--    {'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter'},
+--    {'hrsh7th/cmp-nvim-lsp-document-symbol', event = 'InsertEnter'},
+--    {'hrsh7th/cmp-calc', event = 'InsertEnter'},
+--    {'onsails/lspkind.nvim', event = 'InsertEnter'},
+--    {'hrsh7th/vim-vsnip', event = 'InsertEnter'},
+--    {'hrsh7th/vim-vsnip-integ', event = 'InsertEnter'},
+--    {'rafamadriz/friendly-snippets', event = 'InsertEnter'},
+--    {'Maan2003/lsp_lines.nvim', config = true, event = 'BufNewFile, BufRead'},
+--
+--    {'williamboman/mason.nvim', event = 'BufRead', cmd = {'Mason', 'MasonInstall'},},
+--    {'neovim/nvim-lspconfig', event = 'LspAttach'},
+--    {'williamboman/mason-lspconfig.nvim', event = 'LspAttach'},
 
     -- disable default plugins
     performance = {
