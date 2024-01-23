@@ -1,0 +1,123 @@
+{
+    "modules-left": [
+        "sway/workspaces", 
+//		"custom/media",
+		"sway/mode"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "idle_inhibitor", 
+        "cpu", 
+        "network", 
+        "pulseaudio", 
+		"backlight",
+		"battery",
+        "tray"
+    ],
+    
+    "clock": {
+        "interval": 1,
+        "format": "{:%m/%d %H:%M}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "signal": 15,
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "spotifyd": "",
+            "default": ""
+        },
+        "escape": true,
+        "on-click": "playerctl play-pause",
+        "exec": "$XDG_CONFIG_HOME/waybar/mediaplayer.sh"
+    },
+    "sway/workspaces": {
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+        },
+        "all-outputs": true,
+        "active-only": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+			"4": "󱔗",
+			"5": "",
+			"6": "6",
+			"7": "7",
+			"8": "8",
+			"9": "9",
+            "urgent": "",
+            "default": "",
+        }
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "{usage}% ",
+        "format-alt": "{avg_frequency}/{max_frequency}G 󰌿",
+        "tooltip": true
+    },
+
+    "network": {
+        "interface": "wl*",
+        "format-ethernet": "{ifname} 󰈀",
+        "format-wifi": "{signalStrength}% ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{essid}",
+        "interval": 1
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"]
+    },
+
+    "battery": {
+        "states": {
+            "warning": 20,
+            "critical": 10
+        },
+        "format": "{capacity}% {icon}",
+        "format-charing": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+}
