@@ -48,20 +48,33 @@ vim.cmd([[set mouse=]])
 vim.cmd("autocmd BufEnter * normal! zz")
 
 
-
+-- 句読点にハイライトを付加する。
 vim.api.nvim_set_hl(0, 'Typst1', {fg = '#eb0c50'})
 vim.api.nvim_set_hl(0, 'Typst2', {fg = '#c94f6d'})
+local hl1_id = nil
+local hl2_id = nil
 
-local function HighlightDots()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-	for i, line in ipairs(lines) do
-		for s, e in line:gmatch('()' .. '。' .. '()') do
-			vim.api.nvim_buf_add_highlight(bufnr, -1, 'Typst1', i - 1, s - 1, e - 1)
-		end
-		for s, e in line:gmatch('()' .. '、' .. '()') do
-			vim.api.nvim_buf_add_highlight(bufnr, -1, 'Typst2', i - 1, s - 1, e - 1)
-		end
+local function hldots()
+	if hl1_id ~= nil then
+		vim.fn.matchdelete(hl1_id)
+	end
+	if hl2_id ~= nil then
+		vim.fn.matchdelete(hl2_id)
+	end
+	hl1_id = vim.fn.matchadd('Typst1', '。')
+	hl2_id = vim.fn.matchadd('Typst2', '、')
+end
+
+local function clear_hldots()
+	if hl1_id ~= nil then
+		vim.fn.matchdelete(hl1_id)
+		hl1_id = nil
+	end
+	if hl2_id ~= nil then
+		vim.fn.matchdelete(hl2_id)
+		hl2_id = nil
 	end
 end
-vim.api.nvim_create_user_command('Chd', HighlightDots, {})
+
+vim.api.nvim_create_user_command('Hld', hldots, {})
+vim.api.nvim_create_user_command('NoHld', clear_hldots, {})
