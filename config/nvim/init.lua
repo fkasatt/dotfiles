@@ -14,12 +14,12 @@ require("hlslens").setup()
 local kopts = { noremap = true, silent = true }
 
 vim.cmd.colorscheme("nightfox")
-vim.cmd([[
-	highlight LineNr guifg=#b2b4be guibg=none
-	highlight Comment cterm=none gui=none guifg=#b2b4be
-	highlight Normal ctermbg=none guibg=none
-	highlight NonText ctermbg=none guibg=none
-	highlight Folded ctermbg=none guibg=none
-	highlight EndOfBuffer ctermbg=none guibg=none
-	highlight SignColumn ctermbg=none guibg=none
-]])
+-- vim.cmd([[
+-- 	highlight LineNr guifg=#b2b4be guibg=none
+-- 	highlight Comment cterm=none gui=none guifg=#b2b4be
+-- 	highlight Normal ctermbg=none guibg=none
+-- 	highlight NonText ctermbg=none guibg=none
+-- 	highlight Folded ctermbg=none guibg=none
+-- 	highlight EndOfBuffer ctermbg=none guibg=none
+-- 	highlight SignColumn ctermbg=none guibg=none
+-- ]])

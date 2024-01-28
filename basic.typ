@@ -8,8 +8,10 @@
 	// フォント設定
 	set text(font: font_fam, size: font_size, lang: "ja")
 	show emph: set text(font: "IPAmjMincho Italic")
-	show strong: set text(font: "IPA Gothic")
-	show heading: set text(font: "IPA Gothic")
+	show strong: it => {
+		text(font: "Noto Sans CJK JP", weight: "regular")[#it.body]
+	}
+	show heading: set text(font: "Noto Sans CJK JP")
 
 	set	enum(numbering: "(1a)", indent: 1em)				// 番号リスト文の書式
 	set list(indent: 2em, body-indent: 0.3em)					// リスト文でどの程度インデント下げするか

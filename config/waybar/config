@@ -87,7 +87,7 @@
         "tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{essid}",
         "interval": 1
     },
-
+/*
     "pulseaudio": {
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -103,7 +103,7 @@
         },
         "on-click": "pavucontrol"
     },
-
+*/
     "backlight": {
         "format": "{percent}% {icon}",
         "format-icons": ["󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"]

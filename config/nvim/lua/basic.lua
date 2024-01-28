@@ -46,3 +46,22 @@ o.clipboard:append{'unnamedplus'}
 vim.cmd([[set mouse=]])
 
 vim.cmd("autocmd BufEnter * normal! zz")
+
+
+
+vim.api.nvim_set_hl(0, 'Typst1', {fg = '#eb0c50'})
+vim.api.nvim_set_hl(0, 'Typst2', {fg = '#c94f6d'})
+
+local function HighlightDots()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+	for i, line in ipairs(lines) do
+		for s, e in line:gmatch('()' .. '。' .. '()') do
+			vim.api.nvim_buf_add_highlight(bufnr, -1, 'Typst1', i - 1, s - 1, e - 1)
+		end
+		for s, e in line:gmatch('()' .. '、' .. '()') do
+			vim.api.nvim_buf_add_highlight(bufnr, -1, 'Typst2', i - 1, s - 1, e - 1)
+		end
+	end
+end
+vim.api.nvim_create_user_command('Chd', HighlightDots, {})
