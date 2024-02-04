@@ -13,7 +13,7 @@ require("lazy").setup(plugins, opts)
 require("hlslens").setup()
 local kopts = { noremap = true, silent = true }
 
-vim.cmd.colorscheme("nightfox")
+vim.cmd.colorscheme("tokyonight")
 -- vim.cmd([[
 -- 	highlight LineNr guifg=#b2b4be guibg=none
 -- 	highlight Comment cterm=none gui=none guifg=#b2b4be

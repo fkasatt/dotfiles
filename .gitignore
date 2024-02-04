@@ -51,3 +51,8 @@ config/gtk-2.0/
 config/menus/
 config/thorium
 config/ripgrep-all/
+config/Electron/
+config/kconf_updaterc
+config/kdeglobals
+config/kiorc
+config/trashrc

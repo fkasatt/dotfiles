@@ -257,6 +257,14 @@ return {
 	},
 
 
+	-- Typst
+	{
+		'kaarmu/typst.vim',
+		ft = 'typst',
+		lazy=false,
+	},
+
+
 	-- disable default plugins
 
 	performance = {

@@ -73,6 +73,8 @@ return {
 	},
 	hide_tab_bar_if_only_one_tab = true,
 
+	enable_kitty_graphics=true,
+
 	--title
 	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 		return {
