@@ -6,7 +6,7 @@ return {
 	-- font
 	font = wezterm.font_with_fallback({
 		{ family="PlemolJP Console NF", weight="Medium" },
-		{ family="IBM Plex Sans JP", weight="Medium" },
+		{ family="NotoSansMono CJK SC" },
 		{ family="NotoSansMono CJK JP" },
 		{ family="IPAmjMincho" }
 	}),

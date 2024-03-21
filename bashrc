@@ -12,8 +12,6 @@ alias ll='lsd --long'
 alias lal='lsd --all --long'
 alias cls='clear'
 alias where='readlink -f'
-alias ej='strans --repl -s en -t ja'
-alias je='strans --repl -s ja -t en'
 alias pin='ping -c 1 8.8.8.8'
 alias icat='wezterm imgcat'
 alias help='is --shell bash'
@@ -37,5 +35,3 @@ zat (){
 wttr (){
 	curl -Lso- wttr.in/Izumo?lang=ja | sed 's/┤  \(.\) \(..\) \(..\)  ├/┤  \3\2日(\1)├/' | sed 's/┤  \(.\) \(..\) \(...\) ├/┤ \3\2日(\1)├/'
 }
-
-# eval "$(starship init bash)"
