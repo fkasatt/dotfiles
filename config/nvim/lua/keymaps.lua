@@ -76,6 +76,7 @@ set('n', '<leader>b', '<cmd>Telescope buffers<CR>')		-- バッファ検索
 set('n', '<leader>v', '<cmd>Telescope registers<CR>')	-- クリップボード
 set('n', '<leader>c', '<cmd>Telescope help_tags<CR>')	-- ヘルプ
 set('n', '<leader>f', '<cmd>Telescope file_browser hidden=true<CR>')	-- ファイラ
+set('n', '<leader>m', '<cmd>Telescope marks<CR>')	-- ブックマーク移動
 -- set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>')		-- 定義
 -- set('n', 'gr', '<cmd>Telescope lsp_references<CR>')			-- 参照
 -- set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>')	-- 実装

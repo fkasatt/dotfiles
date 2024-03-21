@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 set $term wezterm
-set $menu dmenu_path | wofi -c $XDG_CONFIG_HOME/wofi/config -s $XDG_CONFIG_HOME/wofi/style.css | xargs swaymsg exec --
+set $menu dmenu_path | wofi -c $HOME/.config/wofi/config | xargs swaymsg exec --
 set $browser vivaldi-stable
 
 output * bg $HOME/Pictures/wp/wp.png fill
@@ -149,9 +149,9 @@ bar {
 	bindsym $mod+F10 exec pactl set-sink-mute $audio toggle
 
 	# Screenshot
-	bindsym Print exec /usr/share/sway/scripts/grimshot --notify save output  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
-	bindsym $mod+Print exec /usr/share/sway/scripts/grimshot --notify save window $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
-	bindsym $mod+Shift+s exec /usr/share/sway/scripts/grimshot --notify save area  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+	bindsym Print exec grimshot --notify save output  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+	bindsym $mod+Print exec grimshot --notify save window $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+	bindsym $mod+Shift+s exec grimshot --notify save area  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
 
 	# lock
 	exec swayidle -w  \

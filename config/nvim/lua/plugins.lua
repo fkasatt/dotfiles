@@ -5,21 +5,25 @@ return {
 	---- deno, input method
 	{
 		"vim-denops/denops.vim",
+		lazy = false
+	},
+
+	{
+		"vim-skk/skkeleton",
 		dependencies = {
-			"vim-skk/skkeleton",
-			config = function()
-				local dicts = {
-					{"~/.skk/SKK-JISYO.all", "euc-jp"},
-					-- {"~/.skk/SKK-JISYO.jawiki", "utf-8"}
-				}
-				vim.fn["skkeleton#config"]({
-					globalDictionaries = dicts,
-					eggLikeNewline = true,
-					markerHenkan = "▹",
-					markerHenkanSelect = "▸",
-				})
-			end,
+			"vim-denops/denops.vim",
 		},
+		config = function()
+			local dictPath = {
+				{"~/.skk/SKK-JISYO.all", "euc-jp"},
+			}
+			vim.fn["skkeleton#config"]({
+				globalDictionaries = dictPath,
+				eggLikeNewline = true,
+				markerHenkan = "▹",
+				markerHenkanSelect = "▸",
+			})
+		end
 	},
 
 	---- 自動補完
@@ -28,7 +32,7 @@ return {
 		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup()
-		end,
+		end
 	},
 
 	---- 自動保存
