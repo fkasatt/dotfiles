@@ -10,9 +10,7 @@ return {
 
 	{
 		"vim-skk/skkeleton",
-		dependencies = {
-			"vim-denops/denops.vim",
-		},
+		dependencies = { "vim-denops/denops.vim" },
 		config = function()
 			local dictPath = {
 				{"~/.skk/SKK-JISYO.all", "euc-jp"},
@@ -151,6 +149,19 @@ return {
 		config = function()
 			require("config/lualine")
 		end,
+	},
+
+	---- no-neck-pain
+	{
+		"shortcuts/no-neck-pain.nvim",
+		event = "VeryLazy"
+	},
+
+	---- todo-comments
+	{
+		"folke/todo-comments.nvim",
+		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" }
 	},
 
 	---- Theme

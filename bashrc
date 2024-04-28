@@ -35,3 +35,11 @@ zat (){
 wttr (){
 	curl -Lso- wttr.in/Izumo?lang=ja | sed 's/┤  \(.\) \(..\) \(..\)  ├/┤  \3\2日(\1)├/' | sed 's/┤  \(.\) \(..\) \(...\) ├/┤ \3\2日(\1)├/'
 }
+
+rem (){
+	if [ $# -ne 2 ] ; then
+		echo "Usage: notify mm:dd message"
+		exit 1
+	fi
+	echo notify-send -t 600000 $2 | at $1 > /dev/null 2>&1
+}
