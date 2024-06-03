@@ -15,7 +15,7 @@ local function selectionCount()
 			chars = chars + vim.fn.strchars(line)
 		end
 
-		return tostring(total_chars) .. "(" .. tostring(chars) .. ")文字"
+		return tostring(total_chars) .. "(" .. tostring(chars) .. ")"
 	end
 
     start_line = vim.fn.line("v")
@@ -38,7 +38,7 @@ local function selectionCount()
     end
 
     local lines = math.abs(end_line - start_line) + 1
-    return tostring(chars) .. "文字"
+    return tostring(chars) .. ""
 end
 
 require('lualine').setup {
@@ -69,7 +69,7 @@ require('lualine').setup {
 			}
 		},
 
-		lualine_x = {},
+		lualine_x = {'diagnostics'},
 		lualine_y = {selectionCount},
 		lualine_z = {
 			{

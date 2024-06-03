@@ -1,12 +1,29 @@
 return {
 
-	-- IO
+  {
+    "vim-denops/denops.vim",
+    lazy = false
+  },
 
-	---- deno, input method
 	{
-		"vim-denops/denops.vim",
-		lazy = false
+    "nvim-lua/plenary.nvim",
+    event = "VeryLazy"
+  },
+
+	{
+		"stevearc/dressing.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("dressing").setup({
+				input = { border = "single" },
+				builtin = { border = "single" },
+			})
+		end
 	},
+
+
+
+  -- I/O
 
 	{
 		"vim-skk/skkeleton",
@@ -24,7 +41,16 @@ return {
 		end
 	},
 
-	---- 自動補完
+	{
+		"Pocco81/auto-save.nvim",
+		event = "ModeChanged",
+		config = function()
+			vim.g.auto_save = 1
+			vim.g.auto_save_events = { "InsertLeave", "TextChanged" }
+			vim.g.auto_save_delay = 100
+		end
+	},
+
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -33,18 +59,6 @@ return {
 		end
 	},
 
-	---- 自動保存
-	{
-		"Pocco81/auto-save.nvim",
-		event = "ModeChanged",
-		config = function()
-			vim.g.auto_save = 1
-			vim.g.auto_save_events = { "InsertLeave", "TextChanged" }
-			vim.g.auto_save_delay = 100
-		end,
-	},
-
-	---- コメント
 	{
 		"numToStr/Comment.nvim",
 		event = "ModeChanged",
@@ -53,86 +67,72 @@ return {
 		end,
 	},
 
-	-- lsp
-
-	{ "neovim/nvim-lspconfig", event = "LspAttach" },
-
 	{
-		"williamboman/mason.nvim",
-		cmd = { "Mason", "MasonInstall" },
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		event = "LspAttach",
-		config = function()
-			require("mason-lspconfig").setup_handlerss({
-				function(server)
-					local opt = {
-						capabilities = require("cmp_nvim_lsp").update_capabilities(
-							vim.lsp.protocol.make_client_capabilities()
-						),
-					}
-					require("lspconfig")[server].setup(opt)
-				end,
-			})
-		end,
-	},
-
-	{
-		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
-		config = function()
-			require("config/nvim-cmp")
-		end,
-	},
-	{ "hrsh7th/cmp-nvim-lsp", event = "InsertEnter" },
-	{ "hrsh7th/cmp-path", event = { "InsertEnter", "CmdlineEnter" } },
-	{ "hrsh7th/cmp-cmdline", event = "ModeChanged" },
-
-	{
-		"stevearc/dressing.nvim",
+		"folke/todo-comments.nvim",
 		event = "VeryLazy",
+		dependencies = { "nvim-lua/plenary.nvim" }
+	},
+
+  {
+    'monaqa/dial.nvim',
+    event = "ModeChanged",
+    config = function()
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group({
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.constant.alias.bool,
+          augend.date.alias["%Y/%m/%d"],
+          augend.date.alias["%Y-%m-%d"],
+          augend.date.alias["%H:%M"],
+          augend.date.alias["%Y年%-m月%-d日"],
+          augend.date.alias["%Y年%-m月%-d日(%ja)"],
+          augend.constant.alias.ja_weekday,
+          augend.constant.alias.ja_weekday_full,
+        },
+      })
+    end
+  },
+
+
+
+  -- display
+  
+	{
+    "folke/tokyonight.nvim", lazy = false,
+    config = function()
+      vim.cmd.colorscheme("tokyonight-moon")
+      vim.api.nvim_set_hl(0, 'LineNr', {fg = '#c8d3f5', bg = 'NONE'})
+    end,
+  },
+	{
+    "rebelot/kanagawa.nvim",
+    event = "VeryLazy"
+  },
+	{
+    "EdenEast/nightfox.nvim",
+    event = "VeryLazy"
+  },
+  
+	{
+		"lewis6991/gitsigns.nvim",
+		event = { "BufRead", "BufNewFile" },
 		config = function()
-			require("dressing").setup({
-				input = { border = "single" },
-				builtin = { border = "single" },
-			})
+			require("config/gitsigns")
 		end,
 	},
 
-	-- search
-
-	---- fzf
-	{ "junegunn/fzf.vim", event = "VeryLazy" },
-
-	---- ファジィモーション
 	{
-		"yuki-yano/fuzzy-motion.vim", event = "VeryLazy",
-		config = function()
-			vim.g.fuzzy_motion_matchers = "fzf"
-		end,
-	},
-
-	---- マッチ候補の末尾に[n/all]を付け加える。また他のマッチ候補には[6n]など直で移動できるコマンドを示す
-	{
-		"kevinhwang91/nvim-hlslens", event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("hlslens").setup({
-				calm_down = true, -- カーソルを外したら検索強調が消える
-			})
-		end,
-	},
+    "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy"
+  },
 
 	{
-		"koron/vim-budoux", event = "BufRead", 
-	},
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerAttachToBuffer"
+  },
 
-	-- UI
-
-	---- Tree-Sitter
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = "BufReadPost",
@@ -142,7 +142,38 @@ return {
 		end,
 	},
 
-	---- Status Bar
+	{
+		"shellRaining/hlchunk.nvim",
+		event = "UIEnter",
+		config = function()
+			local palette = require('nightfox.palette').load("nightfox")
+			require("hlchunk").setup({
+				chunk = {
+					style = {
+						{ fg = palette.blue.base },
+						{ fg = palette.red.base },
+					},
+				},
+				line_num = {
+					enable = false,
+				},
+			})
+		end
+  },
+
+  {
+    'MeanderingProgrammer/markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    ft = 'markdown',
+    config = function()
+        require('render-markdown').setup({})
+    end,
+  },
+
+
+
+  -- UI
+
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
@@ -151,28 +182,9 @@ return {
 		end,
 	},
 
-	---- no-neck-pain
 	{
-		"shortcuts/no-neck-pain.nvim",
-		event = "VeryLazy"
-	},
-
-	---- todo-comments
-	{
-		"folke/todo-comments.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-lua/plenary.nvim" }
-	},
-
-	---- Theme
-	{ "cocopon/iceberg.vim", event = "VeryLazy" },
-	{ "folke/tokyonight.nvim", lazy = false },
-	{ "rebelot/kanagawa.nvim", event = "VeryLazy" },
-	{ "EdenEast/nightfox.nvim", event = "VeryLazy" },
-
-	---- バッファタブ表示・操作
-	{
-		"romgrk/barbar.nvim", event = "ModeChanged",
+		"romgrk/barbar.nvim",
+    event = "ModeChanged",
 		config = function()
 			require("bufferline").setup({
 				auto_hide = true,
@@ -181,53 +193,6 @@ return {
 		end,
 	},
 
-	---- Indent
-	{
-		"lukas-reineke/indent-blankline.nvim", event = "BufReadPost",
-		main = "ibl",
-		config = function()
-			local highlight = {
-				"CursorColumn",
-				"WhiteSpace"
-			}
-			require("ibl").setup{
-				indent = { highlight = highlight, char = "" },
-				whitespace = {
-					highlight = highlight,
-					remove_blankline_trail = false
-				},
-				scope = { enabled = false }
-			}
-		end,
-	},
-
-	---- コード中のカラーコードの背景色をそのカラーコードの色にしてくれる
-	{ "norcalli/nvim-colorizer.lua", cmd = "ColorizerAttachToBuffer" },
-
-	---- カーソルを現在のモードの色にしてくれる
-	{
-		"mvllow/modes.nvim", event = "ModeChanged",
-		config = function()
-			require("modes").setup({
-				copy = "#ff9e3b",
-				delete = "#e82424",
-				insert = "#7e9cd8",
-				visual = "#98bb6c",
-				set_cursorline = false,
-			})
-		end,
-	},
-
-	---- git状況を色などで示す
-	{
-		"lewis6991/gitsigns.nvim",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("config/gitsigns")
-		end,
-	},
-
-	---- terminal
 	{
 		"nyngwang/NeoTerm.lua",
 		event = "ModeChanged",
@@ -242,51 +207,90 @@ return {
 		end,
 	},
 
-	---- filer
+	{
+		"shortcuts/no-neck-pain.nvim",
+		event = "VeryLazy"
+	},
+
 	{
 		"nvim-tree/nvim-tree.lua",
 		event = "VeryLazy",
 		config = function()
-			require("nvim-tree").setup()
+			require("nvim-tree").setup({
+        sort_by = "case_sensitive",
+        view = { adaptive_size = true, },
+        renderer = { group_empty = true, },
+        filters = { dotfiles = true },
+        diagnostics = { enable = true, }
+      })
 		end,
 	},
 
-	---- nerd icon
-	{ "nvim-tree/nvim-web-devicons", event = "VeryLazy" },
 
 
-	---- telescope
-	{ "nvim-lua/plenary.nvim", event = "VeryLazy"},
+	-- search
+
 	{
-		"nvim-telescope/telescope.nvim", event = "ModeChanged",
+    "junegunn/fzf.vim",
+    event = "VeryLazy"
+  },
+
+	{
+		"yuki-yano/fuzzy-motion.vim",
+    event = "VeryLazy",
+		config = function()
+			vim.g.fuzzy_motion_matchers = "fzf"
+		end,
+	},
+
+	{
+		"kevinhwang91/nvim-hlslens",
+    event = { "BufRead", "BufNewFile" },
+		config = function()
+			require("hlslens").setup()
+		end,
+	},
+
+
+
+  -- Telescope
+  
+	{
+		"nvim-telescope/telescope.nvim",
+    event = "ModeChanged",
 		config = function()
 			require("config/telescope")
 		end,
 	},
-	{ "nvim-telescope/telescope-file-browser.nvim", cmd = "Telescope find_files" },
 	{
-		"nvim-telescope/telescope-frecency.nvim", cmd = "Telescope frecency frecency",
+    "nvim-telescope/telescope-file-browser.nvim",
+    cmd = "Telescope find_files"
+  },
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+    cmd = "Telescope frecency frecency",
 		config = function()
 			require("telescope").load_extension "frecency"
 		end,
 	},
+  {
+    'prochri/telescope-all-recent.nvim',
+    event = "ModeChanged",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "kkharji/sqlite.lua",
+      "stevearc/dressing.nvim"
+    },
+  },
+
 
 
 	-- Typst
+	
 	{
 		'kaarmu/typst.vim',
 		ft = 'typst',
 		lazy=false,
 	},
 
-
-	-- disable default plugins
-
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip", "matchit", "matchparen", "netrwPlugin", "rplugin", "shada", "spellfile", "tarPlugin", "tohtml", "tutor", "zipPlugin",
-			},
-		},
-	},
 }

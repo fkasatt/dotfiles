@@ -27,6 +27,8 @@ text/markdown=org.xfce.mousepad.desktop;
 video/mp4=vlc.desktop;smplayer_enqueue.desktop;org.xfce.Parole.desktop;
 image/svg+xml=org.inkscape.Inkscape.desktop;
 text/csv=org.xfce.mousepad.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=vivaldi-stable.desktop;
+text/x-lua=org.xfce.mousepad.desktop;
 
 [Default Applications]
 x-scheme-handler/notion=notion-app.desktop
@@ -53,3 +55,4 @@ x-scheme-handler/webcal=vivaldi-stable.desktop
 text/calendar=userapp-Thunderbird-6KRG81.desktop
 application/x-extension-ics=userapp-Thunderbird-6KRG81.desktop
 x-scheme-handler/webcals=userapp-Thunderbird-6KRG81.desktop
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=vivaldi-stable.desktop
