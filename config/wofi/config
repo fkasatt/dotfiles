@@ -1,0 +1,13 @@
+style=$XDG_CONFIG_HOME/wofi/style.css
+show=drun,run
+width=40%
+height=50%
+allow_images=true
+term=foot
+hide_scroll=true
+insensitive=true
+parse_search=true
+image_size=40
+key_expand=Tab
+dynamic_lines=true
+run-always_parse_args=true

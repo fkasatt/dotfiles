@@ -1,0 +1,119 @@
+/* Whole */
+* {
+	margin-top: 1px;
+	font-family: Audiowide, PlemolJP Console NF, NotoSans CJK JP;
+}
+
+window#waybar {
+    background-color: transparent;
+	color: #dcdfe7;
+	transition-property: color, background-color;
+	transition-duration: 0.2s;
+}
+
+window#waybar.empty {
+    background-color: transparent;
+}
+
+
+
+/* Left Side */
+.modules-left {
+	border-radius: 5px;
+	margin-left: 10px;
+	background-color: rgba(38,42,63,0.6);
+}
+
+/* WorkSpaces */
+#workspaces button {
+	color: #dcdfe7;
+	font-size: 16px;
+}
+
+#workspaces button:hover {
+	background-color: #a5a7ad;
+	color: #2c2d2e;
+}
+
+#workspaces button.visible {
+  background-color: #dcdfe7;
+  color: #2c2d2e;
+}
+
+#workspaces button.urgent {
+  color: #cc3768;
+}
+
+label:disabled,
+button:disabled {
+  color: inherit;
+  background-image: none;
+}
+
+#mode {
+	margin-left: 10px;
+	color: #2c2d2e;
+}
+
+/* Media Info
+#custom-media {
+	padding: 0 10px;
+	margin: 0 10px;
+	border-radius: 20px;
+	font-size: 12px;
+	background-color: #ff0000;
+	color: #ffffff;
+	border: 1px solid #dcdfe7;
+	border-radius: 12px;
+}
+ */
+
+
+/* Center */
+#clock {
+	background-color: rgba(38,42,63,0.8);
+	border-radius: 16px;
+	padding: 0px 10px;
+	font-size: 16px;
+	font-family: SpaceMono;
+	font-weight: bold;
+}
+
+
+
+/* Right Side */
+.modules-right {
+	background-color: rgba(38,42,63,0.6);
+	border-radius: 16px;
+	font-size: 16px;
+	margin-right: 10px;
+}
+
+#idle_inhibitor,
+#cpu,
+#temperature,
+#network,
+#pulseaudio,
+#backlight,
+#battery,
+#tray {
+	padding: 0 10px;
+}
+
+#idle_inhibitor {
+  color: rgba(38,42,63,0.6);
+}
+#idle_inhibitor.activated {
+  color: #dcdfe7;
+}
+
+#temperature.critical {
+  color: #cc3768;
+}
+#network.disconnected {
+  color: #cc3768;
+}
+
+#battery.warning {
+    color: #fff;
+}

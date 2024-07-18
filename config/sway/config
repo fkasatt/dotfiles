@@ -1,0 +1,161 @@
+include /etc/sway/config.d/*
+font pango:PlemolJP Console NF 10
+
+set $mod Mod4
+set $DL Downloads
+set $left h
+set $down j
+set $up k
+set $right l
+set $term wezterm
+set $menu dmenu_path | wofi -c $HOME/.config/wofi/config | xargs swaymsg exec --
+set $browser vivaldi-stable
+
+output * bg $HOME/Pictures/wp/wp.png fill
+output eDP-1 scale 1
+
+gaps inner 10
+default_border pixel 2
+
+input * {
+	xkb_layout "jp"
+	xkb_options "caps:swapescape"
+}
+
+input type:keyboard {
+    repeat_delay 250
+    repeat_rate 50
+}
+
+input type:touchpad {
+    tap enabled
+    dwt enabled
+    natural_scroll enabled
+    pointer_accel 0.2
+}
+
+bar {
+	swaybar_command waybar
+}
+
+### Key bindings
+# Basics:
+	bindsym $mod+Return exec $term
+	bindsym $mod+q kill
+	bindsym $mod+d exec $menu
+	floating_modifier $mod normal
+	bindsym $mod+Shift+c reload
+
+# Exit sway
+    set $Locker swaylock && sleep 1
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id $Locker, mode "default"
+        bindsym e exec --no-startup-id swaymsg exit, mode "default"
+        bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+Shift+e mode "$mode_system"
+
+# Moving around:
+	bindsym $mod+$left focus left
+	bindsym $mod+$down focus down
+	bindsym $mod+$up focus up
+	bindsym $mod+$right focus right
+
+	bindsym $mod+Shift+$left move left
+	bindsym $mod+Shift+$down move down
+	bindsym $mod+Shift+$up move up
+	bindsym $mod+Shift+$right move right
+
+# Workspaces:
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+
+# Scratchpad:
+	bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+
+# Layout stuff:
+
+	bindsym $mod+g splith
+	bindsym $mod+v splitv
+
+#	bindsym $mod+s layout stacking
+#	bindsym $mod+w layout tabbed
+#	bindsym $mod+e layout toggle split
+
+	bindsym $mod+f fullscreen
+	bindsym $mod+Shift+space floating toggle
+	bindsym $mod+space focus mode_toggle
+	bindsym $mod+a focus parent
+
+
+# Resizing containers:
+	mode "resize" {
+		bindsym $left resize shrink width 2px
+	    bindsym $down resize grow height 2px
+		bindsym $up resize shrink height 2px
+	    bindsym $right resize grow width 2px
+		bindsym Escape mode "default"
+	}
+	bindsym $mod+r mode "resize"
+
+# Apps
+	exec fcitx5 -d exec mako
+	exec nm-applet --indicator
+	exec blueman-applet
+	for_window [app_id="blueman-manager"] floating enable
+	exec wl-paste -t text --watch $XDG_CONFIG_HOME/sway/myclipman
+	for_window [app_id="thunar"] floating enable
+	for_window [app_id="mousepad"] floating enable
+	assign [class="Thunderbird"] 5
+	exec thunderbird
+	for_window [app_id="Amberol"] floating enable
+
+	bindsym $mod+b exec clipman pick -t wofi
+	bindsym $mod+F2 exec $browser --gtk-version=4
+	bindsym $mod+F3 exec thunar
+	bindsym $mod+F4 exec mousepad
+	
+	# backlight
+	bindsym $mod+F6 exec sudo light -U 5
+	bindsym $mod+F7 exec sudo light -A 5
+
+	# audio
+	bindsym $mod+F8 exec pactl set-sink-volume $(pactl get-default-sink) -1%
+	bindsym $mod+F9 exec pactl set-sink-volume $(pactl get-default-sink) +1%
+	bindsym $mod+F10 exec pactl set-sink-mute $audio toggle
+
+	# Screenshot
+	bindsym Print exec grimshot --notify save output  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+	bindsym $mod+Print exec grimshot --notify save window $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+	bindsym $mod+Shift+s exec grimshot --notify save area  $HOME/$DL/screenshot_$(date "+%y%m%d%H%M%S").png
+
+	# lock
+	exec swayidle -w  \
+		timeout 36000 "swaylock -f -C $XDG_CONFIG_HOME/swaylock/config" \
+		timeout 36100 'systemctl suspend' \
+
+	bindsym $mod+0 exec swaylock -f -C $XDG_CONFIG_HOME/swaylock/config

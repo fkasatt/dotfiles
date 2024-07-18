@@ -1,0 +1,4 @@
+#!/bin/bash
+# Ctrl+Alt+F3
+sudo cp $HOME/dotfiles/sway.desktop /usr/share/wayland-sessions/sway.desktop
+sudo systemctl reboot
