@@ -16,15 +16,12 @@ vim.cmd("autocmd BufEnter * normal! zz")
 
 
 -- input
--- tab
 o.expandtab = true
 o.tabstop = 2
 o.softtabstop = 2
 o.shiftwidth = 2
--- ()
 o.showmatch = true
 o.matchtime = 1
--- indents
 o.autoindent = true
 o.smartindent = true
 
@@ -44,16 +41,15 @@ o.fileencodings = 'utf-8'
 vim.scriptencoding = 'utf-8'
 o.swapfile = false
 vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
-    pattern = { '*' },
-    callback = function()
-        vim.cmd('silent! normal! g`"zv')
-    end,
+  pattern = { '*' },
+  callback = function()
+    vim.cmd('silent! normal! g`"zv')
+  end,
 })
 
 
 -- copy
 o.clipboard:append{'unnamedplus'}
--- o.mouse = 'a'
 vim.cmd([[set mouse=]])
 
 

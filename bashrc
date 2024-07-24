@@ -39,3 +39,7 @@ rem (){
 	fi
 	echo notify-send -t 600000 $2 | at $1 > /dev/null 2>&1
 }
+
+hikaku (){
+  rg -vxFf $2 $1
+}

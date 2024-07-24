@@ -81,8 +81,8 @@ set('n', '<leader>t', '<cmd>NvimTreeToggle<CR>')
 -- skk-input
 set("i", "<C-j>", "<Plug>(skkeleton-enable)")
 
--- typst
-set('n', 'ew', "<cmd>!typst c '%'<CR>")
+-- Task Runner
+set('n', 'ew', ":<C-u>Jaq<CR>", {silent = true})
 
 
 -- LSP

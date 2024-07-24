@@ -8,20 +8,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = {
-        { import = "plugins" },
+  spec = {
+    { import = "plugins" },
+  },
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
+  performance = {
+    cache = { enabled = true },
+    rtp = {
+      disabled_plugins = {
+        "gzip", "netrwPlugin", "rplugin", "tarPlugin", "tohtml",
+        "tutor", "zipPlugin", "man", "editorconfig"
+      },
     },
-    change_detection = {
-        enabled = false,
-        notify = false,
-    },
-    performance = {
-        cache = { enabled = true },
-        rtp = {
-            disabled_plugins = {
-                "gzip", "netrwPlugin", "rplugin", "tarPlugin", "tohtml",
-                "tutor", "zipPlugin", "man", "editorconfig"
-            },
-        },
-    },
+  },
 })
